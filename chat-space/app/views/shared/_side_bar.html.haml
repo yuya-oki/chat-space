@@ -11,9 +11,4 @@
           = fa_icon 'cog', class: 'icon'
   .groups
     .group
-      - current_user.groups.each do |group|
-        = link_to group_messages_path(group) do
-          .group__name
-            = group.name
-          .group__message
-            メッセージはまだありません。
+      = render partial: 'groups/group', locals: { group: @group}
