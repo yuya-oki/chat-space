@@ -12,9 +12,8 @@
 ## userテーブル
 |Column|Type|Option|
 |------|----|------|
-|user_id|integer|null: false, foreign_key: true|
-|user_name|string|null: false, foreign_key: true|
-|user_email|string|null: false, add_index, unique: true|
+|name|string|null: false, foreign_key: true|
+|user_email|string|null: false, unique: true|
 
 ### Association
 - has_many :messages
