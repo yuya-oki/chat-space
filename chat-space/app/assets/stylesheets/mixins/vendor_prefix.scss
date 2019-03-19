@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // $prefixes: -webkit-, -moz-, -ms-, -o-, '';
 
 // @mixin flexbox {
@@ -6,12 +5,3 @@
 //     display: #{$prefix}flex;
 //   }
 // }
-=======
-$prefixes: -webkit-, -moz-, -ms-, -o-, '';
-
-@mixin flexbox {
-  @each $prefix in $prefixes {
-    display: #{$prefix}flex;
-  }
-}
->>>>>>> origin/master
