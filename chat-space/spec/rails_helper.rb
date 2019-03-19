@@ -31,7 +31,11 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
+<<<<<<< HEAD
   Dir[Rails.root.join('spec/support/**/*.rb')].each {|f| require f }
+=======
+  Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+>>>>>>> origin/master
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include ControllerMacros, type: :controller
   config.include FactoryBot::Syntax::Methods
