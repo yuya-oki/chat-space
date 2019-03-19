@@ -43,7 +43,7 @@
 ## messageテーブル
 |Column|Type|Option|
 |------|----|------|
-|content|string|
+|content|text|
 |image|string|
 |group|references|foreign_key: true|
 |user|references|foreign_key: true|
