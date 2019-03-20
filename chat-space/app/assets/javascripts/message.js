@@ -1,4 +1,4 @@
-      function buildHTML(message){
+      function buildMessageHTML(message){
         if ( message.image ) {
           var html =
           `<div class="message" data-message-id=${message.id}>
@@ -50,7 +50,7 @@ $('.js-form').on('submit', function(){
     processData: false,
     contentType: false
   })
-  .done(function(data){
+  .done(function(form_data){
     var html = buildHTML(data);
     $('.messages').append(html);
     $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
