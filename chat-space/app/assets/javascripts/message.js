@@ -1,40 +1,9 @@
       function buildMessageHTML(message){
         if ( message.image ) {
           var html =
-          `<div class="message" data-message-id=${message.id}>
-            <div class="upper-message">
-              <div class="upper-message__user-name>
-                ${message.user_name}
-              </div>
-              <div class="upper-message__data">
-                ${message.data}
-              </div>
-            </div>
-            <div class="lower-message">
-              <p class="lower-message__content">
-                ${message.content}
-              </p>
-            </div>
-            <asset_path src=${message.image} >
-          </div>`
+          `<asset_path src=${message.image} >`
           return html;
         } else {
-          var html =
-          `<div class="message" data-message-id=${message.id}>
-            <div class="upper-message">
-              <div class="upper-message__user-name">
-                ${message.user_name}
-              </div>
-              <div class="upper-message__data">
-                ${message.user_name}
-              </div>
-            </div>
-            <div class="lower-message">
-              <p class="lower-message__content">
-                ${message.content}
-              </p>
-            </div>
-          </div>`
           return html;
         };
       }
