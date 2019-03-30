@@ -40,6 +40,5 @@ $('.js-form').on('submit', function(){
       .fail(function(){
         alert('error');
       });
-      return false;
     });
 });
