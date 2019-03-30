@@ -31,7 +31,7 @@ $(function () {
         dataType: 'json'
       })
 
-      .done(function(members) {
+      .done(function(members){
         $("#user_search_result").empty();
         if (members.length !== 0) {
           members.forEach(function(user){
