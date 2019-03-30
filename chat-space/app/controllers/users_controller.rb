@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   def index
     @users = User.where('user LIKE(?)', "%#{params[:user]}%")
     respond_to do |format|
-      format.html
+      format.html {redirect_to root_path}
       format.json
     end
   end
@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   def update
     if current_user.update(user_params)
       redirect_to root_path
+      return
     else
       render :edit
     end
