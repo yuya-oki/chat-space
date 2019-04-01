@@ -1,4 +1,13 @@
 $(function () {
+  $(document).on("click", '.user_search_add', function() {
+      var name = $(this).attr("data-user-name");
+      var user_id = $(this).attr("data-user-id");
+      $(this).parent().remove();
+      appendMembers(name, user_id);
+    });
+    $(document).on("click", '.user_search_remove', function(){
+      $(this).parent().remove();
+    });
   var user_list = $("#user_search_result");
   var member_list = $("#member_search_result");
 
@@ -35,7 +44,7 @@ $(function () {
         if (members.length !== 0) {
           members.forEach(function(user){
             appendUsers(user);
-          })
+          });
         }
       })
       .fail(function() {
@@ -44,14 +53,5 @@ $(function () {
     });
   });
 
-    $(document).on("click", '.user_search_add', function() {
-      var name = $(this).attr("data-user-name");
-      var user_id = $(this).attr("data-user-id");
-      $(this).parent().remove();
-      appendMembers(name, user_id);
-    });
-    $(document).on("click", '.user_search_remove', function(){
-      $(this).parent().remove();
-    });
 
 

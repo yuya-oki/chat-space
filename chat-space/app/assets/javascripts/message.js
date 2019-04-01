@@ -19,6 +19,8 @@ $(function() {
                   </div> `
     return html;
   }
+
+  }
 $('.js-form').on('submit', function(){
     e.preventDefault();
     var formData = new FormData(this);
@@ -41,4 +43,3 @@ $('.js-form').on('submit', function(){
         alert('error');
       });
     });
-});
