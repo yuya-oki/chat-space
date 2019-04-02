@@ -20,26 +20,56 @@ $(function() {
     return html;
   }
 
+  $('.js-form').on('submit', function(){
+      e.preventDefault();
+      var formData = new FormData(this);
+      var url = $(this).attr('action')
+      $.ajax({
+        url: url,
+        type: "POST",
+        data: formData,
+        dataType: 'json',
+        processData: false,
+        contentType: false
+      })
+      .done(function(form_data){
+        var html = buildHTML(data);
+        $('.messages').append(html)
+        $('#message_content').val('')
+        $('.message').animate({scrollTop: $('.message')[0].scrollHeight}, 1500);
+      })
+        .fail(function(){
+          alert('error');
+        })
+      })
+  function scroll() {
+    $('.message').animate({scrollTop: $('.message')[0].scrollHeight}, 'fast')
   }
-$('.js-form').on('submit', function(){
-    e.preventDefault();
-    var formData = new FormData(this);
-    var url = $(this).attr('action')
+    var interval = setInterval(function() {
+      if (window.location.href.match(/\/groups\/\d+\/messages/)) {
     $.ajax({
-      url: url,
-      type: "POST",
-      data: formData,
-      dataType: 'json',
-      processData: false,
-      contentType: false
+      url: location.href.json,
+      type: 'GET',
+      dataType: 'json'
     })
-     .done(function(form_data){
-       var html = buildHTML(data);
-       $('.messages').append(html);
-       $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
-       $('form')[0].reset();
-     })
-      .fail(function(){
-        alert('error');
+
+    .done(function(json) {
+      var last_message_id = $('.message:last').data('id');
+      var insertHTML = '';
+      json.messages.forEach(function(message) {
+        if (message.id > last_message_id ) {
+          insertHTML += buildHTML(message);
+        }
       });
+      $('.messages').append(insertHTML);
+    scroll()
+    })
+
+    .fail(function(json) {
+      alert('自動更新に失敗しました');
     });
+    } else {
+    clearInterval(interval);
+   }} , 5 * 1000 );
+});
+
