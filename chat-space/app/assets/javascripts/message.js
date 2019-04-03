@@ -63,9 +63,9 @@ $(function() {
     scroll()
     })
     .fail(function() {
-      alert('error');
+      alert('自動更新に失敗しました');
     });
   };
-  setInterval(reloadMessages, 5000);
+  setInterval(reloadMessages, 10000 );
 });
 
