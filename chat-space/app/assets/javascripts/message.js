@@ -17,29 +17,55 @@ $(function() {
                       ${imagehtml}
                     </div>
                   </div> `
-    return html;
   }
 
+  $('.js-form').on('submit', function(){
+      e.preventDefault();
+      var formData = new FormData(this);
+      var url = $(this).attr('action')
+      $.ajax({
+        url: url,
+        type: "POST",
+        data: formData,
+        dataType: 'json',
+        processData: false,
+        contentType: false
+      })
+      .done(function(form_data){
+        var html = buildHTML(data);
+        $('.messages').append(html)
+        $('#message_content').val('')
+        $('.message').animate({scrollTop: $('.message')[0].scrollHeight}, 1500);
+      })
+        .fail(function(){
+          alert('error');
+        })
+      })
+  function scroll() {
+    $('.message').animate({scrollTop: $('.message')[0].scrollHeight}, 'fast')
   }
-$('.js-form').on('submit', function(){
-    e.preventDefault();
-    var formData = new FormData(this);
-    var url = $(this).attr('action')
+  var reloadMessages = function() {
+    last_message_id = $('.messages:last').data('id');
     $.ajax({
-      url: url,
-      type: "POST",
-      data: formData,
+      url: location.href.json,
+      type: 'get',
       dataType: 'json',
-      processData: false,
-      contentType: false
+      data: {id: last_message_id}
     })
-     .done(function(form_data){
-       var html = buildHTML(data);
-       $('.messages').append(html);
-       $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
-       $('form')[0].reset();
-     })
-      .fail(function(){
-        alert('error');
+    .done(function(messages) {
+      var insertHTML = '';
+      json.messages.forEach(function(message) {
+        if (message.id > last_message_id) {
+          insertHTML += buildMessageHTML(message);
+        }
       });
+      $('messages').append(insertHTML);
+    scroll()
+    })
+    .fail(function() {
+      alert('自動更新に失敗しました');
     });
+  };
+  setInterval(reloadMessages, 10000 );
+});
+
